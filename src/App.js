@@ -12,8 +12,9 @@ function App() {
     const newCard = {
       id: newCardId,
       title,
+      tags,
     };
-
+    console.log(newCard);
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
 

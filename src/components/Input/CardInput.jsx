@@ -30,19 +30,20 @@ const CardInput = ({ setOpen, listId }) => {
   const classes = useStyle();
   const { addCardToList } = useContext(storeApi);
   const [cardTitle, setCardTitle] = useState("");
-  const [cardTags, setCardTags] = useState([]);
+  const [cardTags, setCardTags] = useState("");
 
   const handleChangeCard = (e) => {
     setCardTitle(e.target.value);
   };
 
   const handleChangeTags = (e) => {
-    setCardTags([...e.target.value]);
+    setCardTags(e.target.value);
   };
 
   const handleCardAdd = () => {
     addCardToList(cardTitle, listId, cardTags);
     setCardTitle("");
+    setCardTags("");
     setOpen();
   };
   return (
@@ -53,7 +54,7 @@ const CardInput = ({ setOpen, listId }) => {
             onChange={handleChangeCard}
             multiline
             fullWidth
-            rows={4}
+            // rows={4}
             // onBlur={() => setOpen(false)}
             placeholder="Enter the title"
             value={cardTitle}
@@ -64,10 +65,14 @@ const CardInput = ({ setOpen, listId }) => {
         </Paper>
         <Paper className={classes.tags}>
           <InputBase
+            onChange={handleChangeTags}
+            multiline
             fullWidth
             placeholder="Tags"
-            onChan={handleChangeTags}
             value={cardTags}
+            inputProps={{
+              className: classes.input,
+            }}
           />
         </Paper>
       </div>
