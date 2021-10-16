@@ -21,7 +21,7 @@ const useStyle = makeStyles((theme) => ({
   card: {
     padding: ".6rem",
     margin: "1rem",
-    boxShadow: "5px 4px 8px 5px",
+    // boxShadow: "5px 4px 8px 5px",
   },
   btn: {
     marginRight: ".5rem",

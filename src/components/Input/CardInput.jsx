@@ -6,7 +6,7 @@ import storeApi from "../../utils/storeApi";
 
 const useStyle = makeStyles((theme) => ({
   card: {
-    padding: "1rem",
+    padding: ".5rem",
     margin: "1rem",
     height: "50px",
   },
@@ -21,9 +21,9 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     cursor: "pointer",
   },
-  input: {
-    margin: "1rem",
-  },
+  // input: {
+  //   margin: "1rem",
+  // },
 }));
 
 const CardInput = ({ setOpen, listId }) => {
