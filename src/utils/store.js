@@ -2,14 +2,17 @@ const cards = [
   {
     id: "card-1",
     title: "Learning how to cook",
+    tags: [],
   },
   {
     id: "card-2",
     title: "Making sandwich",
+    tags: [],
   },
   {
     id: "card-3",
     title: "Taking the trash out",
+    tags: [],
   },
 ];
 

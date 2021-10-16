@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Paper, InputBase, Button } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
+import storeApi from "../../utils/storeApi";
 
 const useStyle = makeStyles((theme) => ({
   card: {
@@ -25,35 +26,53 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const CardInput = ({ setOpen }) => {
+const CardInput = ({ setOpen, listId }) => {
   const classes = useStyle();
+  const { addCardToList } = useContext(storeApi);
+  const [cardTitle, setCardTitle] = useState("");
+  const [cardTags, setCardTags] = useState([]);
+
+  const handleChangeCard = (e) => {
+    setCardTitle(e.target.value);
+  };
+
+  const handleChangeTags = (e) => {
+    setCardTags([...e.target.value]);
+  };
+
+  const handleCardAdd = () => {
+    addCardToList(cardTitle, listId, cardTags);
+    setCardTitle("");
+    setOpen();
+  };
   return (
     <div>
       <div>
         <Paper className={classes.card}>
           <InputBase
+            onChange={handleChangeCard}
             multiline
             fullWidth
             rows={4}
             // onBlur={() => setOpen(false)}
             placeholder="Enter the title"
+            value={cardTitle}
             inputProps={{
               className: classes.input,
             }}
           />
         </Paper>
         <Paper className={classes.tags}>
-          <InputBase fullWidth placeholder="Tags" />
+          <InputBase
+            fullWidth
+            placeholder="Tags"
+            onChan={handleChangeTags}
+            value={cardTags}
+          />
         </Paper>
       </div>
       <div className={classes.btn}>
-        <Button
-          size="medium"
-          variant="contained"
-          onClick={() => {
-            setOpen();
-          }}
-        >
+        <Button size="medium" variant="contained" onClick={handleCardAdd}>
           Add Card
         </Button>
         <ClearIcon
