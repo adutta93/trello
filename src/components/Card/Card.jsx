@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Chip } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const tagColor = (tag) => {
   let finalTag = tag.toUpperCase();
@@ -32,6 +33,10 @@ const useStyle = makeStyles((theme) => ({
     marginTop: ".5rem",
     fontWeight: "bold",
   },
+  icon: {
+    marginLeft: "14rem",
+    marginTop: "-1.5rem",
+  },
 }));
 
 const Card = ({ card }) => {
@@ -51,6 +56,9 @@ const Card = ({ card }) => {
           ))}
         </div>
         <div className={classes.title}>{card.title}</div>
+        <div className={classes.icon}>
+          <DeleteOutlineIcon color="error" />
+        </div>
       </Paper>
     </div>
   );

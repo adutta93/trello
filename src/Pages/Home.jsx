@@ -56,6 +56,8 @@ function Home() {
     };
     setData(newState);
   };
+
+  console.log("Updated data", data);
   return (
     <StoreApi.Provider value={{ addCardToList, addList }}>
       <Navbar />

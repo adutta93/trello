@@ -14,6 +14,9 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "2rem",
     marginTop: "2rem",
   },
+  title: {
+    fontSize: "1.5rem",
+  },
 }));
 const List = ({ list }) => {
   const classes = useStyle();
