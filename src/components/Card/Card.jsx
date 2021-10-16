@@ -2,6 +2,7 @@ import React from "react";
 import { Paper, Chip } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Draggable } from "react-beautiful-dnd";
 
 const tagColor = (tag) => {
   let finalTag = tag.toUpperCase();
@@ -39,28 +40,36 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Card = ({ card }) => {
+const Card = ({ card, index }) => {
   const classes = useStyle();
   const allTags = card.tags.split(",");
   console.log("Tags", allTags);
   return (
-    <div>
-      <Paper className={classes.card}>
-        <div>
-          {allTags.map((tag) => (
-            <Chip
-              label={tag.toUpperCase()}
-              color={tagColor(tag)}
-              className={classes.btn}
-            />
-          ))}
+    <Draggable draggableId={card.id} index={index}>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.dragHandleProps}
+          {...provided.draggableProps}
+        >
+          <Paper className={classes.card}>
+            <div>
+              {allTags.map((tag) => (
+                <Chip
+                  label={tag.toUpperCase()}
+                  color={tagColor(tag)}
+                  className={classes.btn}
+                />
+              ))}
+            </div>
+            <div className={classes.title}>{card.title}</div>
+            <div className={classes.icon}>
+              <DeleteOutlineIcon color="error" />
+            </div>
+          </Paper>
         </div>
-        <div className={classes.title}>{card.title}</div>
-        <div className={classes.icon}>
-          <DeleteOutlineIcon color="error" />
-        </div>
-      </Paper>
-    </div>
+      )}
+    </Draggable>
   );
 };
 

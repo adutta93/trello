@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import Title from "../Title/Title";
 import Card from "../Card/Card";
 import InputContainer from "../Input/InputContainer";
+import { Droppable } from "react-beautiful-dnd";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -17,6 +18,9 @@ const useStyle = makeStyles((theme) => ({
   title: {
     fontSize: "1.5rem",
   },
+  classContainer: {
+    marginTop: "2rem",
+  },
 }));
 const List = ({ list }) => {
   const classes = useStyle();
@@ -25,9 +29,20 @@ const List = ({ list }) => {
       <Paper className={classes.root}>
         <CssBaseline />
         <Title title={list.title} />
-        {list.cards.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
+        <Droppable droppableId={list.id}>
+          {(provided) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={classes.classContainer}
+            >
+              {list.cards.map((card, index) => (
+                <Card key={card.id} card={card} index={index} />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
         <div>
           <InputContainer listId={list.id} type="card" />
         </div>
