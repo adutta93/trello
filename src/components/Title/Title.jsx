@@ -13,6 +13,7 @@ const useStyle = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: "1.2rem",
     fontWeight: "bold",
+    marginLeft: "1rem",
   },
   input: {
     // marginTop: "1.2rem",
@@ -24,7 +25,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Title = () => {
+const Title = ({ title }) => {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
 
@@ -34,7 +35,7 @@ const Title = () => {
         <div>
           <InputBase
             autoFocus
-            value="Todo"
+            value={title}
             inputProps={{
               className: classes.input,
             }}
@@ -48,7 +49,7 @@ const Title = () => {
             onClick={() => setOpen(!open)}
             className={classes.editableTitle}
           >
-            Todo
+            {title}
           </Typography>
           <MoreHoriz />
         </div>

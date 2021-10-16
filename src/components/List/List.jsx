@@ -15,15 +15,16 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "2rem",
   },
 }));
-const List = () => {
+const List = ({ list }) => {
   const classes = useStyle();
   return (
     <div>
       <Paper className={classes.root}>
         <CssBaseline />
-        <Title />
-        <Card />
-        <Card />
+        <Title title={list.title} />
+        {list.cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
         <div>
           <InputContainer />
         </div>

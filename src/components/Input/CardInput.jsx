@@ -35,7 +35,7 @@ const CardInput = ({ setOpen }) => {
             multiline
             fullWidth
             rows={4}
-            onBlur={() => setOpen(false)}
+            // onBlur={() => setOpen(false)}
             placeholder="Enter the title"
             inputProps={{
               className: classes.input,
