@@ -12,9 +12,12 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
   },
 }));
+
 function Home() {
   const classes = useStyle();
   const [data, setData] = useState(Store);
+
+  // add card to a list
   const addCardToList = (title, listId, tags) => {
     const newCardId = uuid();
     const newCard = {
@@ -35,8 +38,26 @@ function Home() {
     };
     setData(newState);
   };
+
+  // add a new list
+  const addList = (title) => {
+    const newListId = uuid();
+    const newList = {
+      id: newListId,
+      title,
+      cards: [],
+    };
+    const newState = {
+      listIds: [...data.listIds, newListId],
+      lists: {
+        ...data.lists,
+        [newListId]: newList,
+      },
+    };
+    setData(newState);
+  };
   return (
-    <StoreApi.Provider value={{ addCardToList }}>
+    <StoreApi.Provider value={{ addCardToList, addList }}>
       <Navbar />
       <div className={classes.root}>
         {data.listIds.map((listId) => {

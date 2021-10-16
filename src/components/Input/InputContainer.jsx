@@ -34,7 +34,9 @@ const InputContainer = ({ listId, type }) => {
           elevation={0}
           onClick={() => setOpen(!open)}
         >
-          <Typography>+ Add a card</Typography>
+          <Typography>
+            {type === "card" ? "+ Add another card" : "+ Add another list"}
+          </Typography>
         </Paper>
       </Collapse>
     </div>

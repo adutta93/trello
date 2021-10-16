@@ -26,14 +26,14 @@ const useStyle = makeStyles((theme) => ({
   // },
 }));
 
-const CardInput = ({ setOpen, listId }) => {
+const CardInput = ({ setOpen, listId, type }) => {
   const classes = useStyle();
-  const { addCardToList } = useContext(storeApi);
-  const [cardTitle, setCardTitle] = useState("");
+  const { addCardToList, addList } = useContext(storeApi);
+  const [title, setTitle] = useState("");
   const [cardTags, setCardTags] = useState("");
 
   const handleChangeCard = (e) => {
-    setCardTitle(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleChangeTags = (e) => {
@@ -41,10 +41,16 @@ const CardInput = ({ setOpen, listId }) => {
   };
 
   const handleCardAdd = () => {
-    addCardToList(cardTitle, listId, cardTags);
-    setCardTitle("");
-    setCardTags("");
-    setOpen();
+    if (type === "card") {
+      addCardToList(title, listId, cardTags);
+      setTitle("");
+      setCardTags("");
+      setOpen();
+    } else {
+      addList(title);
+      setTitle("");
+      setOpen();
+    }
   };
   return (
     <div>
@@ -56,29 +62,33 @@ const CardInput = ({ setOpen, listId }) => {
             fullWidth
             // rows={4}
             // onBlur={() => setOpen(false)}
-            placeholder="Enter the title"
-            value={cardTitle}
+            placeholder={type === "card" ? "Enter the title" : "Enter the list"}
+            value={title}
             inputProps={{
               className: classes.input,
             }}
           />
         </Paper>
-        <Paper className={classes.tags}>
-          <InputBase
-            onChange={handleChangeTags}
-            multiline
-            fullWidth
-            placeholder="Tags"
-            value={cardTags}
-            inputProps={{
-              className: classes.input,
-            }}
-          />
-        </Paper>
+        {type === "card" ? (
+          <Paper className={classes.tags}>
+            <InputBase
+              onChange={handleChangeTags}
+              multiline
+              fullWidth
+              placeholder="Tags"
+              value={cardTags}
+              inputProps={{
+                className: classes.input,
+              }}
+            />
+          </Paper>
+        ) : (
+          ""
+        )}
       </div>
       <div className={classes.btn}>
         <Button size="medium" variant="contained" onClick={handleCardAdd}>
-          Add Card
+          {type === "card" ? "Add Card" : "Add List"}
         </Button>
         <ClearIcon
           className={classes.icon}

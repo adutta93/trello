@@ -26,7 +26,7 @@ const List = ({ list }) => {
           <Card key={card.id} card={card} />
         ))}
         <div>
-          <InputContainer listId={list.id} />
+          <InputContainer listId={list.id} type="card" />
         </div>
       </Paper>
     </div>
