@@ -1,0 +1,13 @@
+Step 1: Download the zip file from the attachment and unzip it.
+
+Step 2: Open it with terminal,
+
+Step 3: Go to the root directory where the "package.json" is located, it
+	should be within "trello-master/trello-master" directory.
+
+Step 4: Install all packages and dependency using "npm install" or "yarn" 
+	command. 
+
+Step 5: run "yarn start" or "npm start" command to run the code
+
+Step 6: go to this url where the app is live "http://localhost:3000/"
