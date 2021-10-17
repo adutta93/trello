@@ -26,6 +26,10 @@ button {
   font-weight: 500;
   color: white;
 }
+
+.avatar-grp {
+  margin-right: 20rem;
+}
 .nav-links {
   list-style: none;
 }
@@ -35,6 +39,11 @@ button {
 }
 .nav-links li a {
   transition: all 0.3s ease 0s;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 11px 25px;
+  border-radius: 5px;
+  color: #ffffff;
+  margin-left: -1.5rem;
 }
 
 button {

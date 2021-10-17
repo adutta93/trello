@@ -3,9 +3,11 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { Avatar, AvatarGroup } from "@mui/material";
 
 import Popup from "../PopUp/Popup";
 
+import assignee from "../../utils/Assigne";
 import "./Nav.css";
 
 const style = {
@@ -26,13 +28,20 @@ const Navbar = ({ addList }) => {
   return (
     <div className="nav">
       <div className="logo">PROJECT MANAGEMENT</div>
+      <div className="avatar-grp">
+        <AvatarGroup max={5}>
+          {assignee.map((item, index) => (
+            <Avatar alt={item.name} src={item.img} />
+          ))}
+        </AvatarGroup>
+      </div>
       <nav className="nav-links">
         <ul>
-          <li className="star">
+          {/* <li className="star">
             <a href="#">
               <StarBorderIcon />
             </a>
-          </li>
+          </li> */}
           <li className="calender">
             <a href="#">Calender</a>
           </li>
