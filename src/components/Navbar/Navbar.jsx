@@ -29,7 +29,7 @@ const Navbar = ({ addList }) => {
       <div className="avatar-grp">
         <AvatarGroup max={5}>
           {assignee.map((item, index) => (
-            <Avatar alt={item.name} src={item.img} />
+            <Avatar alt={item.name} src={item.img} key={index} />
           ))}
         </AvatarGroup>
       </div>
