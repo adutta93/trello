@@ -2,17 +2,15 @@ const cards = [
   {
     id: "card-1",
     title: "Learning how to cook",
-    tags: "Priority, something, etc",
+    tags: "learn, cook, serve",
   },
   {
     id: "card-2",
     title: "Making sandwich",
-    tags: "",
   },
   {
     id: "card-3",
     title: "Taking the trash out",
-    tags: "",
   },
 ];
 
@@ -20,12 +18,12 @@ const data = {
   lists: {
     "list-1": {
       id: "list-1",
-      title: "Assigned",
-      cards: [],
+      title: "Todo",
+      cards,
     },
     "list-2": {
-      id: "list-1",
-      title: "In Progress",
+      id: "list-2",
+      title: "Doing",
       cards: [],
     },
   },

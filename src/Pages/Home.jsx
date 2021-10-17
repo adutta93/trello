@@ -63,23 +63,46 @@ function Home() {
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-
+    console.log(
+      "Destination",
+      destination,
+      "|",
+      "Source",
+      source,
+      "|",
+      "DraggableId",
+      draggableId
+    );
     if (!destination) {
       return;
     }
     const sourceList = data.lists[source.droppableId];
     const destinationList = data.lists[destination.droppableId];
-    const draggingCard = sourceList.cards.filter(
+    const draggingCard = sourceList?.cards?.filter(
       (card) => card.id === draggableId
     )[0];
-    if (source.draggableId === destination.draggableId) {
-      sourceList.cards.splice(source.index, 1);
-      destination.cards.splice(destination.index, 0, Card);
+    console.log("Dragging card", draggingCard);
+    if (source.droppableId === destination.droppableId) {
+      sourceList?.cards?.splice(source.index, 1);
+      destinationList?.cards?.splice(destination.index, 0, draggingCard);
       const newState = {
         ...data,
         lists: {
           ...data.lists,
           [sourceList.id]: destinationList,
+        },
+      };
+      setData(newState);
+    } else {
+      sourceList?.cards?.splice(source.index, 1);
+      destinationList?.cards?.splice(destination.index, 0, draggingCard);
+
+      const newState = {
+        ...data,
+        lists: {
+          ...data.lists,
+          [sourceList.id]: sourceList,
+          [destinationList.id]: destinationList,
         },
       };
       setData(newState);

@@ -42,7 +42,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Card = ({ card, index }) => {
   const classes = useStyle();
-  const allTags = card.tags.split(",");
+  const allTags = card?.tags?.split(",");
   console.log("Tags", allTags);
   return (
     <Draggable draggableId={card.id} index={index}>
@@ -54,7 +54,7 @@ const Card = ({ card, index }) => {
         >
           <Paper className={classes.card}>
             <div>
-              {allTags.map((tag) => (
+              {allTags?.map((tag) => (
                 <Chip
                   label={tag.toUpperCase()}
                   color={tagColor(tag)}
