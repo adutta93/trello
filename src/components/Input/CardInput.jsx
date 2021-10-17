@@ -3,6 +3,7 @@ import { Paper, InputBase, Button } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import storeApi from "../../utils/storeApi";
+import Autocomplete from "./AutoComplete";
 
 const useStyle = makeStyles((theme) => ({
   card: {
@@ -11,6 +12,10 @@ const useStyle = makeStyles((theme) => ({
     height: "50px",
   },
   tags: {
+    padding: ".5rem",
+    margin: "1rem",
+  },
+  assign: {
     paddingLeft: "1rem",
     margin: "1rem",
   },
@@ -84,6 +89,13 @@ const CardInput = ({ setOpen, listId, type }) => {
           </Paper>
         ) : (
           ""
+        )}
+        {type === "card" ? (
+          <Paper>
+            <Autocomplete className={classes.assign} />
+          </Paper>
+        ) : (
+          " "
         )}
       </div>
       <div className={classes.btn}>

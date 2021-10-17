@@ -22,7 +22,7 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "2rem",
   },
 }));
-const List = ({ list }) => {
+const List = ({ list, deleteCard }) => {
   const classes = useStyle();
   return (
     <div>
@@ -37,7 +37,13 @@ const List = ({ list }) => {
               className={classes.classContainer}
             >
               {list.cards.map((card, index) => (
-                <Card key={card.id} card={card} index={index} />
+                <Card
+                  key={card.id}
+                  card={card}
+                  index={index}
+                  deleteCard={deleteCard}
+                  listId={list.id}
+                />
               ))}
               {provided.placeholder}
             </div>

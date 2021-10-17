@@ -20,7 +20,7 @@ const style = {
   borderradius: 5,
 };
 
-const Navbar = () => {
+const Navbar = ({ addList }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleChange = () => setModalOpen(!modalOpen);
   return (
@@ -55,7 +55,7 @@ const Navbar = () => {
       >
         <Box sx={style}>
           {" "}
-          <Popup setModalOpen={setModalOpen} />
+          <Popup setModalOpen={setModalOpen} addList={addList} />
         </Box>
       </Modal>
     </div>

@@ -15,8 +15,10 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Popup = ({ setModalOpen }) => {
+const Popup = ({ setModalOpen, addList }) => {
   const classes = useStyle();
+
+  const [input, setInput] = useState("");
 
   return (
     <div>
@@ -29,11 +31,20 @@ const Popup = ({ setModalOpen }) => {
             inputProps={{
               className: classes.input,
             }}
+            value={input}
+            onChange={(e) => setInput(e.currentTarget.value)}
           />
         </Paper>
       </div>
       <div className={classes.btn}>
-        <Button size="medium" variant="contained" onClick={setModalOpen(true)}>
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={() => {
+            addList(input);
+            setModalOpen(false);
+          }}
+        >
           Add List
         </Button>
       </div>

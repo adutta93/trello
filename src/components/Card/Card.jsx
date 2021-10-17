@@ -3,9 +3,11 @@ import { Paper, Chip } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Draggable } from "react-beautiful-dnd";
+import ChipCard from "./ChipCard/ChipCard";
 
 const tagColor = (tag) => {
-  let finalTag = tag.toUpperCase();
+  let finalTag = tag.toUpperCase().trim();
+  console.log(finalTag);
   return finalTag === "DESIGN TEAM"
     ? "primary"
     : finalTag === "COPY REQUEST"
@@ -40,10 +42,11 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Card = ({ card, index }) => {
+const Card = ({ card, index, deleteCard, listId }) => {
   const classes = useStyle();
   const allTags = card?.tags?.split(",");
-  console.log("Tags", allTags);
+
+  // console.log("Tags color", allTags);
   return (
     <Draggable draggableId={card.id} index={index}>
       {(provided) => (
@@ -54,17 +57,23 @@ const Card = ({ card, index }) => {
         >
           <Paper className={classes.card}>
             <div>
-              {allTags?.map((tag) => (
-                <Chip
-                  label={tag.toUpperCase()}
-                  color={tagColor(tag)}
-                  className={classes.btn}
-                />
-              ))}
+              {allTags?.map((tag) => {
+                console.log("Tag color", tagColor(tag));
+                return (
+                  <Chip
+                    label={tag.toUpperCase()}
+                    color={tagColor(tag)}
+                    className={classes.btn}
+                  />
+                );
+              })}
             </div>
             <div className={classes.title}>{card.title}</div>
             <div className={classes.icon}>
-              <DeleteOutlineIcon color="error" />
+              <DeleteOutlineIcon
+                color="error"
+                onClick={() => deleteCard(listId, card.id)}
+              />
             </div>
           </Paper>
         </div>

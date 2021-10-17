@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
 import { v4 as uuid } from "uuid";
 import List from "../components/List/List";
 import Navbar from "../components/Navbar/Navbar";
 import StoreApi from "../utils/storeApi";
-import Store from "../utils/store";
 import InputContainer from "../components/Input/InputContainer";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Card } from "@mui/material";
@@ -17,7 +16,18 @@ const useStyle = makeStyles((theme) => ({
 
 function Home() {
   const classes = useStyle();
-  const [data, setData] = useState(Store);
+  const [data, setData] = useState({
+    lists: {},
+  });
+
+  useEffect(() => {
+    setData(JSON.parse(window.localStorage.getItem("data")));
+    console.log("Data", data);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("data", JSON.stringify(data));
+  }, [data]);
 
   // add card to a list
   const addCardToList = (title, listId, tags) => {
@@ -31,14 +41,12 @@ function Home() {
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
 
-    const newState = {
-      ...data,
+    setData({
       lists: {
         ...data.lists,
         [listId]: list,
       },
-    };
-    setData(newState);
+    });
   };
 
   // add a new list
@@ -49,18 +57,11 @@ function Home() {
       title,
       cards: [],
     };
-    const newState = {
-      listIds: [...data.listIds, newListId],
-      lists: {
-        ...data.lists,
-        [newListId]: newList,
-      },
-    };
-    setData(newState);
+    console.log({ [newListId]: newList });
+    setData({
+      lists: { ...data.lists, [newListId]: newList },
+    });
   };
-
-  console.log("Updated data", data);
-
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     console.log(
@@ -108,16 +109,35 @@ function Home() {
       setData(newState);
     }
   };
+
+  const deleteCard = (listId, cardId) => {
+    const updatedCards = data.lists[listId].cards.filter(
+      (item) => item.id !== cardId
+    );
+
+    setData({
+      lists: {
+        ...data.lists,
+        [listId]: {
+          ...data.lists[listId],
+          cards: updatedCards,
+        },
+      },
+    });
+  };
+
   return (
     <StoreApi.Provider value={{ addCardToList, addList }}>
-      <Navbar />
+      <Navbar addList={addList} />
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.root}>
-          {data.listIds.map((listId) => {
-            const list = data.lists[listId];
-            return <List list={list} key={listId} />;
+          {Object.entries(data.lists).map((item) => {
+            // const list = data.lists[listId];
+            return (
+              <List list={item[1]} key={item[0]} deleteCard={deleteCard} />
+            );
           })}
-          <InputContainer type="list" />
+          {/* <InputContainer type="list" /> */}
         </div>
       </DragDropContext>
     </StoreApi.Provider>
