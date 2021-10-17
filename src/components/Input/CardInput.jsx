@@ -1,15 +1,23 @@
 import React, { useContext, useState } from "react";
-import { Paper, InputBase, Button } from "@mui/material/";
+import {
+  Paper,
+  InputBase,
+  Button,
+  Box,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import storeApi from "../../utils/storeApi";
-import Autocomplete from "./AutoComplete";
+import assignee from "../../utils/Assigne";
 
 const useStyle = makeStyles((theme) => ({
   card: {
     padding: ".5rem",
     margin: "1rem",
-    height: "50px",
   },
   tags: {
     padding: ".5rem",
@@ -36,6 +44,7 @@ const CardInput = ({ setOpen, listId, type }) => {
   const { addCardToList, addList } = useContext(storeApi);
   const [title, setTitle] = useState("");
   const [cardTags, setCardTags] = useState("");
+  const [name, setName] = useState("");
 
   const handleChangeCard = (e) => {
     setTitle(e.target.value);
@@ -45,9 +54,13 @@ const CardInput = ({ setOpen, listId, type }) => {
     setCardTags(e.target.value);
   };
 
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+
   const handleCardAdd = () => {
     if (type === "card") {
-      addCardToList(title, listId, cardTags);
+      addCardToList(title, listId, cardTags, name);
       setTitle("");
       setCardTags("");
       setOpen();
@@ -92,7 +105,24 @@ const CardInput = ({ setOpen, listId, type }) => {
         )}
         {type === "card" ? (
           <Paper>
-            <Autocomplete className={classes.assign} />
+            <Box sx={{ maxWidth: 269, marginLeft: 1.9, marginBottom: 1.4 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Assignee</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={name}
+                  label="Assignee<"
+                  onChange={handleChangeName}
+                >
+                  {assignee.map((item, index) => (
+                    <MenuItem value={item.name} key={index}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
           </Paper>
         ) : (
           " "

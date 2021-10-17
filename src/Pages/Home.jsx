@@ -30,14 +30,15 @@ function Home() {
   }, [data]);
 
   // add card to a list
-  const addCardToList = (title, listId, tags) => {
+  const addCardToList = (title, listId, tags, name) => {
     const newCardId = uuid();
     const newCard = {
       id: newCardId,
       title,
       tags,
+      name,
     };
-    console.log(newCard);
+    console.log("New Card", newCard);
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
 

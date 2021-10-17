@@ -1,13 +1,12 @@
 import React from "react";
-import { Paper, Chip } from "@mui/material/";
+import { Paper, Chip, Avatar } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Draggable } from "react-beautiful-dnd";
-import ChipCard from "./ChipCard/ChipCard";
+import { blue } from "@mui/material/colors";
 
 const tagColor = (tag) => {
   let finalTag = tag.toUpperCase().trim();
-  console.log(finalTag);
   return finalTag === "DESIGN TEAM"
     ? "primary"
     : finalTag === "COPY REQUEST"
@@ -23,7 +22,7 @@ const tagColor = (tag) => {
 
 const useStyle = makeStyles((theme) => ({
   card: {
-    padding: ".6rem",
+    padding: "1rem",
     margin: "1rem",
     // boxShadow: "5px 4px 8px 5px",
   },
@@ -33,18 +32,26 @@ const useStyle = makeStyles((theme) => ({
   },
   title: {
     fontSize: "1.1rem",
-    marginTop: "3rem",
+    marginTop: "2rem",
     fontWeight: "bold",
   },
   icon: {
     marginLeft: "14rem",
-    marginTop: "-1.5rem",
+    marginTop: "-1.8rem",
+  },
+  nameInit: {
+    marginLeft: "-.2rem",
+    marginTop: "1.5rem",
   },
 }));
 
 const Card = ({ card, index, deleteCard, listId }) => {
   const classes = useStyle();
   const allTags = card?.tags?.split(",");
+  const nameInitials = card.name
+    ?.split(" ")
+    .map((n) => n[0])
+    .join("");
 
   // console.log("Tags color", allTags);
   return (
@@ -58,7 +65,6 @@ const Card = ({ card, index, deleteCard, listId }) => {
           <Paper className={classes.card}>
             <div>
               {allTags?.map((tag) => {
-                console.log("Tag color", tagColor(tag));
                 return (
                   <Chip
                     label={tag.toUpperCase()}
@@ -70,6 +76,11 @@ const Card = ({ card, index, deleteCard, listId }) => {
               })}
             </div>
             <div className={classes.title}>{card.title}</div>
+            <div>
+              <Avatar className={classes.nameInit}>
+                {nameInitials ? nameInitials : "N/A"}
+              </Avatar>
+            </div>
             <div className={classes.icon}>
               <DeleteOutlineIcon
                 color="error"
