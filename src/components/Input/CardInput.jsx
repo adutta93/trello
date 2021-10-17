@@ -13,6 +13,7 @@ import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import storeApi from "../../utils/storeApi";
 import assignee from "../../utils/Assigne";
+import Swal from "sweetalert2";
 
 const useStyle = makeStyles((theme) => ({
   card: {
@@ -58,16 +59,24 @@ const CardInput = ({ setOpen, listId, type }) => {
     setName(e.target.value);
   };
 
-  const handleCardAdd = () => {
+  const handleCardAdd = ({ title, cardTags, name }) => {
     if (type === "card") {
       addCardToList(title, listId, cardTags, name);
       setTitle("");
       setCardTags("");
       setOpen();
     } else {
-      addList(title);
-      setTitle("");
-      setOpen();
+      if (!title) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please Add title!",
+        });
+      } else {
+        addList(title);
+        setTitle("");
+        setOpen();
+      }
     }
   };
   return (
