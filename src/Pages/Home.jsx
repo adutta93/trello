@@ -4,9 +4,7 @@ import { v4 as uuid } from "uuid";
 import List from "../components/List/List";
 import Navbar from "../components/Navbar/Navbar";
 import StoreApi from "../utils/storeApi";
-import InputContainer from "../components/Input/InputContainer";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Card } from "@mui/material";
 
 const useStyle = makeStyles((theme) => ({
   root: {

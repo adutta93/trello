@@ -1,4 +1,4 @@
-import AionyHaust from "../assets/aiony-haust.jpg";
+// import AionyHaust from "../assets/aiony-haust.jpg";
 import AlbertDera from "../assets/albert-dera.jpg";
 import ChristopherCampbell from "../assets/christopher-campbell.jpg";
 import IanDooley from "../assets/ian-dooley.jpg";

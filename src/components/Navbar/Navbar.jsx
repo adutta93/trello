@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import DateRangeIcon from "@mui/icons-material/DateRange";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Avatar, AvatarGroup } from "@mui/material";
@@ -43,14 +41,14 @@ const Navbar = ({ addList }) => {
             </a>
           </li> */}
           <li className="calender">
-            <a href="#">Calender</a>
+            <a href="/">Calender</a>
           </li>
           <li>
-            <a href="#">Public</a>
+            <a href="/">Public</a>
           </li>
         </ul>
       </nav>
-      <a className="bucket" href="#">
+      <a className="bucket" href="/">
         <button onClick={handleChange}>
           <span className="add-btn-logo">+</span> New Bucket
         </button>

@@ -3,7 +3,6 @@ import { Paper, Chip, Avatar } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Draggable } from "react-beautiful-dnd";
-import { blue } from "@mui/material/colors";
 
 const tagColor = (tag) => {
   let finalTag = tag.toUpperCase().trim();
