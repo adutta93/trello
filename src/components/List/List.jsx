@@ -19,6 +19,7 @@ const useStyle = makeStyles((theme) => ({
   title: {
     fontSize: "1.5rem",
   },
+  icon: { display: "flex" },
   classContainer: {
     marginTop: "2rem",
   },
@@ -29,8 +30,11 @@ const List = ({ list, deleteCard, deleteList }) => {
     <div>
       <Paper className={classes.root}>
         <CssBaseline />
-        <Title title={list.title} />
-        <CloseIcon onClick={() => deleteList(list.id)} />
+
+        <div className={classes.icon}>
+          <Title title={list.title} />
+          <CloseIcon onClick={() => deleteList(list.id)} />
+        </div>
         <Droppable droppableId={list.id}>
           {(provided) => (
             <div

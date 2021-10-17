@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Typography, InputBase } from "@mui/material/";
-import { MoreHoriz } from "@mui/icons-material/";
 import { makeStyles } from "@mui/styles";
 // import { makeStyles } from "@material-ui/core/styles";
 
@@ -53,7 +52,6 @@ const Title = ({ title }) => {
           >
             {title}
           </Typography>
-          <MoreHoriz />
         </div>
       )}
     </div>
