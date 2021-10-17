@@ -33,7 +33,7 @@ const useStyle = makeStyles((theme) => ({
   },
   title: {
     fontSize: "1.1rem",
-    marginTop: ".5rem",
+    marginTop: "3rem",
     fontWeight: "bold",
   },
   icon: {
@@ -64,6 +64,7 @@ const Card = ({ card, index, deleteCard, listId }) => {
                     label={tag.toUpperCase()}
                     color={tagColor(tag)}
                     className={classes.btn}
+                    size="small"
                   />
                 );
               })}
