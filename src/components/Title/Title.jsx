@@ -48,7 +48,7 @@ const Title = ({ title }) => {
           <Typography
             onClick={() => setOpen(!open)}
             className={classes.editableTitle}
-            variantMapping="h1"
+            variant="h5"
           >
             {title}
           </Typography>

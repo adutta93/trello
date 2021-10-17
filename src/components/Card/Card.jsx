@@ -52,7 +52,6 @@ const Card = ({ card, index, deleteCard, listId }) => {
     .map((n) => n[0])
     .join("");
 
-  // console.log("Tags color", allTags);
   return (
     <Draggable draggableId={card.id} index={index}>
       {(provided) => (
@@ -63,9 +62,10 @@ const Card = ({ card, index, deleteCard, listId }) => {
         >
           <Paper className={classes.card}>
             <div>
-              {allTags?.map((tag) => {
+              {allTags?.map((tag, index) => {
                 return (
                   <Chip
+                    key={`${index}-${tag}`}
                     label={tag.toUpperCase()}
                     color={tagColor(tag)}
                     className={classes.btn}

@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 import { v4 as uuid } from "uuid";
 import List from "../components/List/List";
 import Navbar from "../components/Navbar/Navbar";
-import StoreApi from "../utils/storeApi";
 import { DragDropContext } from "react-beautiful-dnd";
 
 const useStyle = makeStyles((theme) => ({
@@ -35,6 +34,7 @@ function Home() {
       tags,
       name,
     };
+    console.log("new card ==>> ", newCard);
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
 
@@ -118,26 +118,27 @@ function Home() {
       lists: updatedLists,
     });
   };
+
   return (
-    <StoreApi.Provider value={{ addCardToList, addList }}>
+    <>
       <Navbar addList={addList} />
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.root}>
           {Object.entries(data.lists).map((item) => {
-            // const list = data.lists[listId];
             return (
               <List
                 list={item[1]}
                 key={item[0]}
                 deleteCard={deleteCard}
                 deleteList={deleteList}
+                addCardToList={addCardToList}
+                addList={addList}
               />
             );
           })}
-          {/* <InputContainer type="list" /> */}
         </div>
       </DragDropContext>
-    </StoreApi.Provider>
+    </>
   );
 }
 

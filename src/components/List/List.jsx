@@ -25,8 +25,9 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "2rem",
   },
 }));
-const List = ({ list, deleteCard, deleteList }) => {
+const List = ({ list, deleteCard, deleteList, addCardToList, addList }) => {
   const classes = useStyle();
+  console.log("list title==>> ", list.title);
   return (
     <div>
       <Paper className={classes.root}>
@@ -46,21 +47,29 @@ const List = ({ list, deleteCard, deleteList }) => {
               {...provided.droppableProps}
               className={classes.classContainer}
             >
-              {list.cards.map((card, index) => (
-                <Card
-                  key={card.id}
-                  card={card}
-                  index={index}
-                  deleteCard={deleteCard}
-                  listId={list.id}
-                />
-              ))}
+              {list.cards.map((card, index) => {
+                // console.log("card ==>> ", card);
+                return (
+                  <Card
+                    key={card.id}
+                    card={card}
+                    index={index}
+                    deleteCard={deleteCard}
+                    listId={list.id}
+                  />
+                );
+              })}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
         <div>
-          <InputContainer listId={list.id} type="card" />
+          <InputContainer
+            listId={list.id}
+            type="card"
+            addCardToList={addCardToList}
+            addList={addList}
+          />
         </div>
       </Paper>
     </div>

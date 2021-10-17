@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Paper,
   InputBase,
@@ -11,7 +11,6 @@ import {
 } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
-import storeApi from "../../utils/storeApi";
 import assignee from "../../utils/Assigne";
 import Swal from "sweetalert2";
 
@@ -35,14 +34,10 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "1rem",
     cursor: "pointer",
   },
-  // input: {
-  //   margin: "1rem",
-  // },
 }));
 
-const CardInput = ({ setOpen, listId, type }) => {
+const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
   const classes = useStyle();
-  const { addCardToList, addList } = useContext(storeApi);
   const [title, setTitle] = useState("");
   const [cardTags, setCardTags] = useState("");
   const [name, setName] = useState("");
@@ -59,7 +54,7 @@ const CardInput = ({ setOpen, listId, type }) => {
     setName(e.target.value);
   };
 
-  const handleCardAdd = ({ title, cardTags, name }) => {
+  const handleCardAdd = () => {
     if (type === "card") {
       addCardToList(title, listId, cardTags, name);
       setTitle("");
@@ -87,8 +82,6 @@ const CardInput = ({ setOpen, listId, type }) => {
             onChange={handleChangeCard}
             multiline
             fullWidth
-            // rows={4}
-            // onBlur={() => setOpen(false)}
             placeholder={type === "card" ? "Enter the title" : "Enter the list"}
             value={title}
             inputProps={{
