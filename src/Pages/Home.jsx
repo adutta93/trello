@@ -127,6 +127,19 @@ function Home() {
     });
   };
 
+  const deleteList = (id) => {
+    console.log("id ==>> ", id);
+
+    const updatedLists = { ...data.lists };
+
+    delete updatedLists[id];
+
+    console.log("updatesLists ==>> ", updatedLists);
+
+    setData({
+      lists: updatedLists,
+    });
+  };
   return (
     <StoreApi.Provider value={{ addCardToList, addList }}>
       <Navbar addList={addList} />
@@ -135,7 +148,12 @@ function Home() {
           {Object.entries(data.lists).map((item) => {
             // const list = data.lists[listId];
             return (
-              <List list={item[1]} key={item[0]} deleteCard={deleteCard} />
+              <List
+                list={item[1]}
+                key={item[0]}
+                deleteCard={deleteCard}
+                deleteList={deleteList}
+              />
             );
           })}
           {/* <InputContainer type="list" /> */}

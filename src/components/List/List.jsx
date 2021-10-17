@@ -6,6 +6,7 @@ import Title from "../Title/Title";
 import Card from "../Card/Card";
 import InputContainer from "../Input/InputContainer";
 import { Droppable } from "react-beautiful-dnd";
+import CloseIcon from "@mui/icons-material/Close";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -22,13 +23,14 @@ const useStyle = makeStyles((theme) => ({
     marginTop: "2rem",
   },
 }));
-const List = ({ list, deleteCard }) => {
+const List = ({ list, deleteCard, deleteList }) => {
   const classes = useStyle();
   return (
     <div>
       <Paper className={classes.root}>
         <CssBaseline />
         <Title title={list.title} />
+        <CloseIcon onClick={() => deleteList(list.id)} />
         <Droppable droppableId={list.id}>
           {(provided) => (
             <div
