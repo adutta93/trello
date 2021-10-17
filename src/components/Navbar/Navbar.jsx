@@ -35,20 +35,15 @@ const Navbar = ({ addList }) => {
       </div>
       <nav className="nav-links">
         <ul>
-          {/* <li className="star">
-            <a href="#">
-              <StarBorderIcon />
-            </a>
-          </li> */}
           <li className="calender">
-            <a href="/">Calender</a>
+            <a href="#">Calender</a>
           </li>
           <li>
-            <a href="/">Public</a>
+            <a href="#">Public</a>
           </li>
         </ul>
       </nav>
-      <a className="bucket" href="/">
+      <a className="bucket" href="#">
         <button onClick={handleChange}>
           <span className="add-btn-logo">+</span> New Bucket
         </button>

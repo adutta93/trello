@@ -28,7 +28,7 @@ button {
 }
 
 .avatar-grp {
-  margin-right: 20rem;
+  margin-right: auto;
 }
 .nav-links {
   list-style: none;
@@ -40,15 +40,15 @@ button {
 .nav-links li a {
   transition: all 0.3s ease 0s;
   background-color: rgba(255, 255, 255, 0.25);
-  padding: 11px 25px;
+  padding: 7px 14px;
   border-radius: 5px;
   color: #ffffff;
-  margin-left: -1.5rem;
+  margin-left: -1rem;
 }
 
 button {
   margin-left: 20px;
-  padding: 12.5px 25px;
+  padding: 8px 16px;
   background-color: #19d9fb;
   border: none;
   border-radius: 5px;
@@ -57,4 +57,28 @@ button {
 }
 button:hover {
   background-color: #1fc3e0;
+}
+
+@media only screen and (max-width: 1440px) {
+  .nav {
+    background-color: lightblue;
+  }
+
+  .nav-links li {
+    display: inline-block;
+    padding: 0 20px;
+  }
+  button {
+    margin-left: 12px;
+    padding: 8px 16px;
+    background-color: #19d9fb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 0.5;
+  }
+  button:hover {
+    background-color: #1fc3e0;
+  }
 }

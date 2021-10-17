@@ -20,7 +20,6 @@ function Home() {
 
   useEffect(() => {
     setData(JSON.parse(window.localStorage.getItem("data")));
-    console.log("Data", data);
   }, []);
 
   useEffect(() => {
@@ -36,7 +35,6 @@ function Home() {
       tags,
       name,
     };
-    console.log("New Card", newCard);
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
 
@@ -56,23 +54,12 @@ function Home() {
       title,
       cards: [],
     };
-    console.log({ [newListId]: newList });
     setData({
       lists: { ...data.lists, [newListId]: newList },
     });
   };
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-    console.log(
-      "Destination",
-      destination,
-      "|",
-      "Source",
-      source,
-      "|",
-      "DraggableId",
-      draggableId
-    );
     if (!destination) {
       return;
     }
@@ -81,7 +68,6 @@ function Home() {
     const draggingCard = sourceList?.cards?.filter(
       (card) => card.id === draggableId
     )[0];
-    console.log("Dragging card", draggingCard);
     if (source.droppableId === destination.droppableId) {
       sourceList?.cards?.splice(source.index, 1);
       destinationList?.cards?.splice(destination.index, 0, draggingCard);
@@ -126,14 +112,8 @@ function Home() {
   };
 
   const deleteList = (id) => {
-    console.log("id ==>> ", id);
-
     const updatedLists = { ...data.lists };
-
     delete updatedLists[id];
-
-    console.log("updatesLists ==>> ", updatedLists);
-
     setData({
       lists: updatedLists,
     });

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Typography, InputBase } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
-// import { makeStyles } from "@material-ui/core/styles";
 
 const useStyle = makeStyles((theme) => ({
   editableTitleContainer: {
