@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paper, Chip, Avatar } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import { Draggable } from "react-beautiful-dnd";
 import { IoTrashOutline } from "react-icons/io5";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const tagColor = (tag) => {
   let finalTag = tag.toUpperCase().trim();
@@ -14,7 +16,7 @@ const tagColor = (tag) => {
     ? "error"
     : finalTag === "PRIORITY 1"
     ? "info"
-    : finalTag === "PRIORITY 2"
+    : finalTag === "UI"
     ? "success"
     : "warning";
 };
@@ -23,28 +25,32 @@ const useStyle = makeStyles((theme) => ({
   card: {
     padding: "1rem",
     margin: "1rem",
+    backgroundColor: "#F3F7F8",
   },
   btn: {
     marginRight: ".5rem",
     marginTop: ".2rem",
   },
   title: {
-    fontSize: "1.1rem",
-    marginTop: "2rem",
+    fontSize: "1rem",
+    marginTop: "1rem",
     fontWeight: "bold",
   },
   icon: {
-    marginLeft: "14rem",
-    marginTop: "-1.8rem",
+    marginLeft: "11rem",
+    marginTop: ".5rem",
+    display: "flex",
   },
   nameInit: {
     marginLeft: "-.2rem",
     marginTop: "1.5rem",
+    marginBottom: "-2rem",
   },
 }));
 
 const Card = ({ card, index, deleteCard, listId }) => {
   const classes = useStyle();
+  const [btn, setBtn] = useState(true);
   const allTags = card?.tags?.split(",");
   // const nameInitials = card.name
   //   ?.split(" ")
@@ -60,7 +66,14 @@ const Card = ({ card, index, deleteCard, listId }) => {
           {...provided.dragHandleProps}
           {...provided.draggableProps}
         >
-          <Paper className={classes.card}>
+          <Paper
+            className={classes.card}
+            elevation={3}
+            sx={{
+              backgroundColor: "rgb(255,255,255, .25)",
+              drShadow: "rgba(149, 183, 198, 0.25)",
+            }}
+          >
             <div>
               {allTags?.map((tag, index) => {
                 return (
@@ -85,7 +98,30 @@ const Card = ({ card, index, deleteCard, listId }) => {
               <IoTrashOutline
                 color="error"
                 onClick={() => deleteCard(listId, card.id)}
+                sx={{ marginTop: ".5rem" }}
               />
+              <div>
+                {btn ? (
+                  <BookmarkBorderIcon
+                    sx={{
+                      marginTop: "-.2rem",
+                      marginLeft: ".8rem",
+                      fontSize: "1.2rem",
+                    }}
+                    onClick={() => setBtn(!btn)}
+                  />
+                ) : (
+                  <BookmarkIcon
+                    sx={{
+                      marginTop: "-.2rem",
+                      marginLeft: ".8rem",
+                      fontSize: "1.2rem",
+                      color: "#fcba03",
+                    }}
+                    onClick={() => setBtn(!btn)}
+                  />
+                )}
+              </div>
             </div>
           </Paper>
         </div>

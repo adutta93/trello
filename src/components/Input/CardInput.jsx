@@ -77,7 +77,10 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
   return (
     <div>
       <div>
-        <Paper className={classes.card}>
+        <Paper
+          className={classes.card}
+          sx={{ backgroundColor: "rgb(255,255,255, .25)" }}
+        >
           <InputBase
             onChange={handleChangeCard}
             multiline
@@ -90,7 +93,10 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
           />
         </Paper>
         {type === "card" ? (
-          <Paper className={classes.tags}>
+          <Paper
+            className={classes.tags}
+            sx={{ backgroundColor: "rgb(255,255,255, .25)" }}
+          >
             <InputBase
               onChange={handleChangeTags}
               multiline
@@ -106,26 +112,24 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
           ""
         )}
         {type === "card" ? (
-          <Paper>
-            <Box sx={{ maxWidth: 269, marginLeft: 1.9, marginBottom: 1.4 }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Assignee</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={name}
-                  label="Assignee<"
-                  onChange={handleChangeName}
-                >
-                  {assignee.map((item, index) => (
-                    <MenuItem value={item.name} key={index}>
-                      {item.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-          </Paper>
+          <Box sx={{ maxWidth: 269, marginLeft: 1.9, marginBottom: 1.4 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Assignee</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={name}
+                label="Assignee<"
+                onChange={handleChangeName}
+              >
+                {assignee.map((item, index) => (
+                  <MenuItem value={item.name} key={index}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
         ) : (
           " "
         )}

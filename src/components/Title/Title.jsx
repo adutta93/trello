@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles((theme) => ({
   editableTitleContainer: {
     margin: "1.5rem",
+    marginBottom: "-1rem",
     fontWeight: "bold",
     display: "flex",
     fontSize: "2rem",

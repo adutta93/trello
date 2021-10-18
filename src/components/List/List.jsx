@@ -11,16 +11,14 @@ import CloseIcon from "@mui/icons-material/Close";
 const useStyle = makeStyles((theme) => ({
   root: {
     width: "300px",
-    // height: "35px",
-    backgroundColor: "#F3F7F8",
-    marginLeft: "2rem",
-    marginTop: "2rem",
+    marginLeft: "8rem",
+    marginTop: "4rem",
   },
   title: {
     fontSize: "1.5rem",
   },
   iconGroup: { display: "flex" },
-  icon: { marginTop: "1.5rem", marginLeft: "7rem" },
+  icon: { marginTop: "1.5rem", marginLeft: "7rem", position: "relative" },
   classContainer: {
     marginTop: "2rem",
   },
@@ -30,7 +28,7 @@ const List = ({ list, deleteCard, deleteList, addCardToList, addList }) => {
   console.log("list title==>> ", list.title);
   return (
     <div>
-      <Paper className={classes.root}>
+      <Paper className={classes.root} sx={{ backgroundColor: "#F3F7F8" }}>
         <CssBaseline />
 
         <div className={classes.iconGroup}>
