@@ -44,13 +44,15 @@ const Navbar = ({ addList }) => {
         <ul>
           <li>
             <Button
-              variant="outlined"
-              fullwidth="true"
-              startIcon={<StarBorderIcon fontSize="medium" />}
+              startIcon={
+                <StarBorderIcon
+                  sx={{ marginLeft: ".7rem", fontSize: "medium" }}
+                />
+              }
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.25)",
                 color: "#ffffff",
-                padding: "7px",
+                padding: "7.5px",
               }}
             />
           </li>
