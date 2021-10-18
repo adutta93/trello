@@ -2,15 +2,16 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import PublicIcon from "@mui/icons-material/Public";
-import DateRangeIcon from "@mui/icons-material/DateRange";
+
+import { BiCalendar } from "react-icons/bi";
 
 import Popup from "../PopUp/Popup";
-
 import assignee from "../../utils/Assigne";
 import "./Nav.css";
+import { IconContext } from "react-icons/lib";
 
 const style = {
   position: "absolute",
@@ -28,78 +29,60 @@ const Navbar = ({ addList }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleChange = () => setModalOpen(!modalOpen);
   return (
-    <div className="nav">
-      <div className="logo">Project Management</div>
-      <div className="avatar-grp">
-        {assignee.map((item, index) => (
-          <Avatar
-            alt={item.name}
-            src={`https://randomuser.me/api/portraits/thumb/men/${index}.jpg`}
-            key={index}
-            style={{ marginLeft: ".4rem" }}
-          />
-        ))}
-      </div>
-      <nav className="nav-links">
-        <ul>
-          <li>
-            <Button
-              startIcon={
-                <StarBorderIcon
-                  sx={{ marginLeft: ".7rem", fontSize: "medium" }}
-                />
-              }
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.25)",
-                color: "#ffffff",
-                padding: "7.5px",
-              }}
+    <IconContext.Provider value={{ size: "1.4rem" }}>
+      <div className="nav">
+        <div className="logo">Project Management</div>
+        <div className="avatar-grp">
+          {assignee.map((item, index) => (
+            <Avatar
+              alt={item.name}
+              src={`https://randomuser.me/api/portraits/thumb/men/${index}.jpg`}
+              key={index}
+              style={{ marginLeft: ".4rem" }}
             />
-          </li>
-          <li className="calender">
-            <Button
-              variant="outlined"
-              startIcon={<DateRangeIcon />}
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.25)",
-                color: "#ffffff",
-              }}
-            >
-              Calender
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant="outlined"
-              startIcon={<PublicIcon />}
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.25)",
-                color: "#ffffff",
-              }}
-            >
-              Public
-            </Button>
-          </li>
-        </ul>
-      </nav>
-      <a className="bucket" href="#">
-        <button onClick={handleChange}>
-          <span className="add-btn-logo">+</span> New Bucket
-        </button>
-      </a>
+          ))}
+        </div>
+        <nav className="nav-links">
+          <ul>
+            <button className="starBtn">
+              <StarBorderIcon style={{ marginTop: ".1rem" }} />
+            </button>
+            <button className="calendarBtn">
+              <div style={{ marginTop: ".18rem" }}>
+                <BiCalendar style={{ marginRight: ".5rem" }} />
+              </div>
+              <div style={{ marginTop: ".17rem" }}>Calendar</div>
+            </button>
+            <button className="publicBtn">
+              {" "}
+              <div style={{ marginTop: ".1rem" }}>
+                <PublicIcon
+                  style={{ marginRight: ".5rem", marginLeft: ".1rem" }}
+                />
+              </div>
+              <div style={{ marginTop: ".17rem" }}>Public</div>
+            </button>
+          </ul>
+        </nav>
+        <a className="bucket" href="#">
+          <button className="add-btn" onClick={handleChange}>
+            <span className="add-btn-logo">+</span> New Bucket
+          </button>
+        </a>
 
-      <Modal
-        open={modalOpen}
-        onClose={handleChange}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {" "}
-          <Popup setModalOpen={setModalOpen} addList={addList} />
-        </Box>
-      </Modal>
-    </div>
+        <Modal
+          open={modalOpen}
+          onClose={handleChange}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            {" "}
+            <Popup setModalOpen={setModalOpen} addList={addList} />
+          </Box>
+        </Modal>
+      </div>
+    </IconContext.Provider>
   );
 };
 
