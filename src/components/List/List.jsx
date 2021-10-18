@@ -20,7 +20,7 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "1.5rem",
   },
   iconGroup: { display: "flex" },
-  icon: { marginTop: "1.5rem", marginLeft: "10rem" },
+  icon: { marginTop: "1.5rem", marginLeft: "6rem" },
   classContainer: {
     marginTop: "2rem",
   },
