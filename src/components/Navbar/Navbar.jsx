@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Avatar, AvatarGroup } from "@mui/material";
+import { Avatar } from "@mui/material";
 
 import Popup from "../PopUp/Popup";
 
@@ -26,13 +26,16 @@ const Navbar = ({ addList }) => {
   const handleChange = () => setModalOpen(!modalOpen);
   return (
     <div className="nav">
-      <div className="logo">PROJECT MANAGEMENT</div>
+      <div className="logo">Project Management</div>
       <div className="avatar-grp">
-        <AvatarGroup max={5}>
-          {assignee.map((item, index) => (
-            <Avatar alt={item.name} src={item.img} key={index} />
-          ))}
-        </AvatarGroup>
+        {assignee.map((item, index) => (
+          <Avatar
+            alt={item.name}
+            src={`https://randomuser.me/api/portraits/thumb/men/${index}.jpg`}
+            key={index}
+            style={{ marginLeft: ".4rem" }}
+          />
+        ))}
       </div>
       <nav className="nav-links">
         <ul>

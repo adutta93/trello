@@ -21,7 +21,7 @@ button {
 }
 .logo {
   cursor: pointer;
-  margin-right: auto;
+  margin-left: -6rem;
   font-size: 1.5rem;
   font-weight: 500;
   color: white;
@@ -29,6 +29,8 @@ button {
 
 .avatar-grp {
   margin-right: auto;
+  margin-left: 3rem;
+  display: flex;
 }
 .nav-links {
   list-style: none;

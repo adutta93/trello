@@ -23,7 +23,6 @@ const useStyle = makeStyles((theme) => ({
   card: {
     padding: "1rem",
     margin: "1rem",
-    // boxShadow: "5px 4px 8px 5px",
   },
   btn: {
     marginRight: ".5rem",
@@ -47,10 +46,11 @@ const useStyle = makeStyles((theme) => ({
 const Card = ({ card, index, deleteCard, listId }) => {
   const classes = useStyle();
   const allTags = card?.tags?.split(",");
-  const nameInitials = card.name
-    ?.split(" ")
-    .map((n) => n[0])
-    .join("");
+  // const nameInitials = card.name
+  //   ?.split(" ")
+  //   .map((n) => n[0])
+  //   .join("");
+  let randNum = Math.floor(Math.random() * 10 + 1);
 
   return (
     <Draggable draggableId={card.id} index={index}>
@@ -76,9 +76,10 @@ const Card = ({ card, index, deleteCard, listId }) => {
             </div>
             <div className={classes.title}>{card.title}</div>
             <div>
-              <Avatar className={classes.nameInit}>
-                {nameInitials ? nameInitials : "N/A"}
-              </Avatar>
+              <Avatar
+                className={classes.nameInit}
+                src={`https://randomuser.me/api/portraits/thumb/men/${randNum}.jpg`}
+              />
             </div>
             <div className={classes.icon}>
               <DeleteOutlineIcon
