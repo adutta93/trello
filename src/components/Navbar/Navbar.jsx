@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Avatar } from "@mui/material";
+import { Avatar, Button, Stack, IconButton } from "@mui/material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import PublicIcon from "@mui/icons-material/Public";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import { makeStyles } from "@mui/styles";
 
 import Popup from "../PopUp/Popup";
 
@@ -21,7 +25,11 @@ const style = {
   borderradius: 5,
 };
 
+const useStyle = makeStyles((theme) => ({
+  public: { marginTop: ".2rem" },
+}));
 const Navbar = ({ addList }) => {
+  const classes = useStyle();
   const [modalOpen, setModalOpen] = useState(false);
   const handleChange = () => setModalOpen(!modalOpen);
   return (
@@ -39,11 +47,41 @@ const Navbar = ({ addList }) => {
       </div>
       <nav className="nav-links">
         <ul>
+          <li>
+            <Button
+              variant="outlined"
+              fullwidth="true"
+              startIcon={<StarBorderIcon fontSize="medium" />}
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.25)",
+                color: "#ffffff",
+                padding: "7px",
+              }}
+            />
+          </li>
           <li className="calender">
-            <a href="#">Calender</a>
+            <Button
+              variant="outlined"
+              startIcon={<DateRangeIcon />}
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.25)",
+                color: "#ffffff",
+              }}
+            >
+              Calender
+            </Button>
           </li>
           <li>
-            <a href="#">Public</a>
+            <Button
+              variant="outlined"
+              startIcon={<PublicIcon />}
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.25)",
+                color: "#ffffff",
+              }}
+            >
+              Public
+            </Button>
           </li>
         </ul>
       </nav>
