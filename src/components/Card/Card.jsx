@@ -30,6 +30,7 @@ const useStyle = makeStyles((theme) => ({
   btn: {
     marginRight: ".5rem",
     marginTop: ".2rem",
+    fontSize: ".5rem",
   },
   title: {
     fontSize: "1rem",
@@ -85,6 +86,9 @@ const Card = ({ card, index, deleteCard, listId }) => {
                     color={tagColor(tag)}
                     className={classes.btn}
                     size="small"
+                    sx={{
+                      fontSize: ".7rem",
+                    }}
                   />
                 );
               })}
