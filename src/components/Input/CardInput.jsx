@@ -61,17 +61,9 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
       setCardTags("");
       setOpen();
     } else {
-      if (!title) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please Add title!",
-        });
-      } else {
-        addList(title);
-        setTitle("");
-        setOpen();
-      }
+      addList(title);
+      setTitle("");
+      setOpen();
     }
   };
   return (
@@ -79,7 +71,10 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
       <div>
         <Paper
           className={classes.card}
-          sx={{ backgroundColor: "rgb(255,255,255, .25)" }}
+          sx={{
+            backgroundColor: "rgb(255,255,255, .25)",
+            boxShadow: "0 4px 8px gainsboro",
+          }}
         >
           <InputBase
             onChange={handleChangeCard}
@@ -95,7 +90,10 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
         {type === "card" ? (
           <Paper
             className={classes.tags}
-            sx={{ backgroundColor: "rgb(255,255,255, .25)" }}
+            sx={{
+              backgroundColor: "rgb(255,255,255, .25)",
+              boxShadow: "0 4px 8px gainsboro",
+            }}
           >
             <InputBase
               onChange={handleChangeTags}
@@ -121,6 +119,10 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
                 value={name}
                 label="Assignee<"
                 onChange={handleChangeName}
+                sx={{
+                  backgroundColor: "rgb(255,255,255, .25)",
+                  boxShadow: "0 4px 8px gainsboro",
+                }}
               >
                 {assignee.map((item, index) => (
                   <MenuItem value={item.name} key={index}>
@@ -135,13 +137,27 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
         )}
       </div>
       <div className={classes.btn}>
-        <Button size="medium" variant="contained" onClick={handleCardAdd}>
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={handleCardAdd}
+          sx={{
+            marginBottom: ".65rem",
+          }}
+        >
           {type === "card" ? "Add Card" : "Add List"}
         </Button>
         <ClearIcon
           className={classes.icon}
           onClick={() => {
             setOpen();
+          }}
+          sx={{
+            // backgroundColor: "rgb(255,255,255, .25)",
+            backgroundColor: "#F3F7F8",
+            boxShadow: "0 4px 8px gainsboro",
+            marginTop: ".3rem",
+            borderRadius: "5px",
           }}
         />
       </div>

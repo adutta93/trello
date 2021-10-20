@@ -71,7 +71,7 @@ const Card = ({ card, index, deleteCard, listId }) => {
             elevation={3}
             sx={{
               backgroundColor: "rgb(255,255,255, .25)",
-              drShadow: "rgba(149, 183, 198, 0.25)",
+              boxShadow: "0 4px 15px gainsboro",
             }}
           >
             <div>

@@ -13,9 +13,9 @@ const useStyle = makeStyles((theme) => ({
   addCard: {
     padding: ".7rem",
     margin: "1rem",
-    background: "#EBECF0",
+    backgroundColor: "#d6d6d6",
     "&:hover": {
-      backgroundColor: "#b1b2b5",
+      backgroundColor: "#d6d6d6",
     },
   },
 }));

@@ -25,7 +25,6 @@ const useStyle = makeStyles((theme) => ({
 }));
 const List = ({ list, deleteCard, deleteList, addCardToList, addList }) => {
   const classes = useStyle();
-  console.log("list title==>> ", list.title);
   return (
     <div>
       <Paper className={classes.root} sx={{ backgroundColor: "#F3F7F8" }}>
@@ -46,7 +45,6 @@ const List = ({ list, deleteCard, deleteList, addCardToList, addList }) => {
               className={classes.classContainer}
             >
               {list.cards.map((card, index) => {
-                // console.log("card ==>> ", card);
                 return (
                   <Card
                     key={card.id}
