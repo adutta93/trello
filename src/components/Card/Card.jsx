@@ -34,6 +34,8 @@ const useStyle = makeStyles((theme) => ({
   title: {
     fontSize: "1rem",
     marginTop: "1rem",
+    marginBottom: "-.5rem",
+
     fontWeight: "bold",
   },
   icon: {
@@ -92,6 +94,7 @@ const Card = ({ card, index, deleteCard, listId }) => {
               <Avatar
                 className={classes.nameInit}
                 src={`https://randomuser.me/api/portraits/thumb/men/${randNum}.jpg`}
+                sx={{ width: 30, height: 30 }}
               />
             </div>
             <div className={classes.icon}>
