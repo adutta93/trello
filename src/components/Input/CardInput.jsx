@@ -8,6 +8,7 @@ import {
   MenuItem,
   FormControl,
   Select,
+  Tooltip,
 } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -94,16 +95,21 @@ const CardInput = ({ setOpen, listId, type, addCardToList, addList }) => {
               boxShadow: "0 4px 8px gainsboro",
             }}
           >
-            <InputBase
-              onChange={handleChangeTags}
-              multiline
-              fullWidth
-              placeholder="Tags"
-              value={cardTags}
-              inputProps={{
-                className: classes.input,
-              }}
-            />
+            <Tooltip
+              disableFocusListener
+              title="Please add tags seperated by comma(',')!"
+            >
+              <InputBase
+                onChange={handleChangeTags}
+                multiline
+                fullWidth
+                placeholder="Tags"
+                value={cardTags}
+                inputProps={{
+                  className: classes.input,
+                }}
+              />
+            </Tooltip>
           </Paper>
         ) : (
           ""
