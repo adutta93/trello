@@ -12,7 +12,6 @@ import {
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import assignee from "../../utils/Assigne";
-import Swal from "sweetalert2";
 
 const useStyle = makeStyles((theme) => ({
   card: {
