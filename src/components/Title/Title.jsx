@@ -8,11 +8,11 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: "-1rem",
     fontWeight: "bold",
     display: "flex",
-    fontSize: "2rem",
+    fontSize: "1.5rem",
   },
   editableTitle: {
     flexGrow: 1,
-    fontSize: "2rem",
+    fontSize: "1.5rem",
     fontWeight: "bold",
     // marginLeft: "1rem",
   },
